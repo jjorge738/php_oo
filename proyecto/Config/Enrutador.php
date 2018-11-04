@@ -11,12 +11,20 @@
                 require_once $ruta;
                 $mostrar = "Controllers\\".$controlador;
                 $controlador = new $mostrar;
-
-                if(!isset($metodo)){
-                    call_user_func(array($controlador,$metodo));
-                }else{
-                    call_user_func(array($controlador,$metodo),$argumento);
+                //var_dump($controlador);
+                
+                try{
+                    if(!isset($metodo)){
+                        //Ejecuta el metodo del controlador
+                        $datos = call_user_func(array($controlador,$metodo));
+                    }else{
+                        //Ejecuta el metodo del controlador
+                        $datos = call_user_func(array($controlador,$metodo),$argumento);
+                    }
+                }catch(Exception $e){
+                    var_dump($e);
                 }
+                
 
             }
             //Cargar Vista
@@ -25,8 +33,9 @@
             // Validar si el archivo se puede leer
             if(is_readable($rutaVista)){
                 require_once $rutaVista;
+                
             }else{
-                echo "No existe Ruta.";
+                echo '<h5 class="warning">Error al obtener Vista del documento<hr></h5>';
             }
 
         }

@@ -3,7 +3,7 @@
     class Autoload{
 
         public  static function Run(){
-            var_dump($class);
+           // var_dump($class);
 
             spl_autoload_register(function($class){
                 $ruta = str_replace("\\","/",$class).".php";

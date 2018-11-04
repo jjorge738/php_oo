@@ -1,11 +1,27 @@
 <?php namespace Controllers;
-    class seccionesController{
+    use Models\Seccion as Seccion;
 
-        public function index(){
-            print "Hola soy el Index de Secciones";
+    class seccionesController{
+        private $secciones;
+
+        public function __construct(){
+            $this->secciones = new Seccion();
         }
-        public function ver(){
-            print "Hola soy el metodo Ver de Secciones";
+        public function index(){
+            $datos = $this->secciones->listar();
+            return $datos;
+        }
+        public function editar($sec_id){
+            $this->secciones->$id;
+            $dato = $this->secciones->View();
+            return $datos;
+        }
+        public function agregar(){
+            if($_POST){
+                $this->secciones->set("nombre",$_POST['sec_nombre']);
+                $this->secciones->Add();
+                header("Location:" . URL."secciones");
+            }
         }
 
     }
